@@ -40,7 +40,7 @@ module.exports = {
         },
         backgroundImage: {
           'hero-pattern':
-            "url('https://i.ibb.co/MkvLDfb/Rectangle-4389.png')",
+            "url('https://w0.peakpx.com/wallpaper/332/229/HD-wallpaper-white-cubes-geometric-shapes-white-aesthetic.jpg')",
         },
       },
     },
