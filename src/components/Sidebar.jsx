@@ -9,7 +9,7 @@ import { useStateContext } from '../contexts/ContextProvider';
 
 const Sidebar = () => {
 
-  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize, currentColor } = useStateContext();
 
   // Declaring a function that closes the sidebar if the screen size is less than 900px in width
   const handleCloseSideBar = () => {
@@ -55,20 +55,26 @@ const Sidebar = () => {
                   to={`/${link.name}`}
                   key={link.name}
                   onClick={handleCloseSideBar}
-                  className={({ isActive }) =>
-                    isActive ? activeLink : normalLink}
+
+                  style={({ isActive }) => ({
+                    backgroundColor: isActive ? currentColor : ''
+                  })}
+
+              className={({ isActive }) =>
+                isActive ? activeLink : normalLink}
                 >
-                  {link.icon}
-                  <span className='capitalize'>
-                    {link.name}
-                  </span>
-                </NavLink>
-              ))}
-            </div>
+              {link.icon}
+              <span className='capitalize'>
+                {link.name}
+              </span>
+            </NavLink>
           ))}
         </div>
-      </>)}
-    </div>
+          ))}
+      </div>
+      </>)
+}
+    </div >
   )
 }
 
