@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsCurrencyDollar } from 'react-icons/bs';
+import { TiChartLine } from 'react-icons/ti'
 import { GoPrimitiveDot } from 'react-icons/go';
 
 import { Stacked, Pie, Button, SparkLine } from '../components';
@@ -8,7 +9,7 @@ import { earningData, SparklineAreaData, ecomPieChartData } from '../data/dummy'
 
 import { useStateContext } from '../contexts/ContextProvider';
 
-const Ecommerce = () => {
+const AccountSummary = () => {
 
   const { currentColor } = useStateContext();
 
@@ -16,18 +17,26 @@ const Ecommerce = () => {
     <div className='mt-12'>
       <div className='flex flex-wrap lg:flex-nowrap justify-center'>
         <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg
-        h-44 rounded-xl w-full lg:w-5/6 p-8 pt-9 m-3'>
-          <div className='flex justify-between items-center'>
+        rounded-xl w-full lg:w-5/6 p-8 pt-9 m-3'>
+          <div className='flex justify-between border-b-1'>
+            <h1 className='font-bold text-2xl mb-3'>Financial Summary</h1>
+            <TiChartLine className='text-2xl' />
+          </div>
+          <div className='flex justify-between items-center mt-3'>
             <div>
-              <p className='font-bold text-gray-400'>Earnings</p>
+              <p className='font-bold text-gray-400 dark:text-white'>Revenue</p>
               <p className='text-2xl'>$63,449.78</p>
+            </div>
+            <div>
+              <p className='font-bold text-gray-400 dark:text-white'>Expenses</p>
+              <p className='text-2xl text-red-500'>- $23,449.78</p>
             </div>
           </div>
           <div className='mt-6'>
             <Button
               color='white'
               bgColor={currentColor}
-              text='Download'
+              text='Download Report'
               borderRadius='10px'
               size='md'
             />
@@ -121,11 +130,11 @@ const Ecommerce = () => {
               </div>
             </div>
             <div>
-                <Stacked
-                  width='320px'
-                  height='360px'
-                />
-              </div>
+              <Stacked
+                width='320px'
+                height='360px'
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -133,4 +142,4 @@ const Ecommerce = () => {
   )
 }
 
-export default Ecommerce
+export default AccountSummary

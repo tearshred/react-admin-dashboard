@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { SiShopware } from 'react-icons/si';
+import { AiOutlineDesktop } from 'react-icons/ai';
+import { BsBank } from 'react-icons/bs'
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
@@ -30,7 +31,7 @@ const Sidebar = () => {
             onClick={handleCloseSideBar}
             className='items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900'
           >
-            <SiShopware /><span>Shoppy</span>
+            <AiOutlineDesktop /><span>Dashboard</span>
           </Link>
           <TooltipComponent content='Menu' position='BottomCenter'>
             <button type='button'
@@ -38,7 +39,9 @@ const Sidebar = () => {
                 (prevActiveMenu) =>
                   !prevActiveMenu
               )}
-              className='text-xl rounded-full p-3 hover:bg-light-gray mt-4 block'
+              style={{ color: 'rgb(153, 171, 180)' }}
+              className='text-xl rounded-full p-3 hover:bg-light-gray mt-4 block
+              dark:hover:bg-gray-700 duration-500'
             >
               <MdOutlineCancel />
             </button>
