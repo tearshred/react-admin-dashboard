@@ -475,6 +475,7 @@ export const links = [
     links: [
       {
         name: 'summary',
+        title: 'Account Summary',
         icon: <BsFillBarChartLineFill />,
       },
     ],

@@ -5,7 +5,7 @@ import { BsBank } from 'react-icons/bs'
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
-import { links } from '../data/dummy';
+import { links } from '../data/sidebarLinks';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const Sidebar = () => {
@@ -59,7 +59,7 @@ const Sidebar = () => {
                   to={`/${link.name}`}
                   key={link.name}
                   onClick={handleCloseSideBar}
-
+                
                   style={({ isActive }) => ({
                     backgroundColor: isActive ? currentColor : ''
                   })}
@@ -69,7 +69,7 @@ const Sidebar = () => {
                 >
                   {link.icon}
                   <span className='capitalize'>
-                    {link.name}
+                    {link.title}
                   </span>
                 </NavLink>
               ))}
