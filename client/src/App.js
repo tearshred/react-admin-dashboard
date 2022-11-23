@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
@@ -17,6 +17,17 @@ const App = () => {
 
   const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } = useStateContext();
 
+  const [backendData, setBackendData] = useState([{}]);
+
+  useEffect(() => {
+    fetch('/api').then(response => response.json()
+      ).then(
+        data => {
+          setBackendData(data);
+        }
+      )
+  }, []);
+
   return (
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
       <div className='flex flex-col h-screen'>
@@ -34,6 +45,17 @@ const App = () => {
                 </button>
               </TooltipComponent>
             </div>
+
+            <div>
+              {(typeof backendData.users === 'undefined') ? (
+                <p className='text-3xl text-white'>Loading</p>
+              ) : (
+                backendData.users.map((user, i) => (
+                  <p key='i'>{user}</p>
+                ))
+              )}
+          
+        </div>
             {activeMenu ? (
               <div className='w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white'>
                 <Sidebar />
