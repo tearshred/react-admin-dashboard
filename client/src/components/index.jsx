@@ -1,5 +1,6 @@
-export { default as Button } from './Button';
-export { default as CircularGauge } from './CircularGauge';
+export { default as Button } from './ReusableComponents/Button';
+export { default as CircularGauge } from './ReusableComponents/CircularGauge';
+export { default as Tabs } from './ReusableComponents/Tabs';
 export { default as ThemeSettings } from './ThemeSettings';
 export { default as Sidebar } from './Sidebar';
 export { default as FinancialSummary } from './Financial/FinancialSummary';

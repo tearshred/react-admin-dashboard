@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GoPrimitiveDot } from 'react-icons/go';
-import { Button, SparkLine, Stacked } from '../../components';
+import { Button, SparkLine, Stacked, Tabs } from '../../components';
 import { earningData, SparklineAreaData, ecomPieChartData } from '../../data/dummy';
 import { percentageCalculator } from '../../components/index';
 
@@ -11,6 +11,8 @@ const RevenueOverview = (props) => {
     const { currentColor } = useStateContext();
 
     const [percentage, setPercentage] = useState();
+
+    const types = ['Total', 'Q1', 'Q2', 'Q3', 'Q4'];
 
     useEffect(() => {
         if (props.marketingBudget !== 'undefined' && props.marketingExpenses !== 'undefined') {
@@ -35,11 +37,12 @@ const RevenueOverview = (props) => {
                         </p>
                     </div>
                 </div>
-                <div className='mt-3 flex justify-between'>
-                    <h2 className='text-2xl'>Q1</h2>
-                    <h2 className='text-2xl'>Q2</h2>
-                    <h2 className='text-2xl'>Q3</h2>
-                    <h2 className='text-2xl'>Q4</h2>
+                <div className='flex flex-row flex-1'> 
+                    <Tabs 
+                        types={types}
+                        currentColor={currentColor}
+                        className='text-2xl w-full md:font-bold'
+                    />
                 </div>
                 <div className='mt-10 flex gap-10 flex-wrap justify-center'>
                     <div className='border-r-1 border-color m-4 pr-10'>
