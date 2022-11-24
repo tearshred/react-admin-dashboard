@@ -4,7 +4,7 @@ const app = express();
 app.get('/api', (req, res) => {
     res.json({
         earnings: 6237449.78,
-        expenses: 2633823.17,
+        expenses: 2321452.73,
         marketingBudget: 1000000,
         marketingExpenses: 123587.82
     })

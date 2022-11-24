@@ -1,4 +1,5 @@
 export { default as Button } from './Button';
+export { default as CircularGauge } from './CircularGauge';
 export { default as ThemeSettings } from './ThemeSettings';
 export { default as Sidebar } from './Sidebar';
 export { default as FinancialSummary } from './Financial/FinancialSummary';

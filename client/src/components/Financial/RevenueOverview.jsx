@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { GoPrimitiveDot } from 'react-icons/go';
-
 import { Button, SparkLine, Stacked } from '../../components';
 import { earningData, SparklineAreaData, ecomPieChartData } from '../../data/dummy';
+import { percentageCalculator } from '../../components/index';
 
 import { useStateContext } from '../../contexts/ContextProvider';
 
@@ -10,6 +10,13 @@ const RevenueOverview = (props) => {
 
     const { currentColor } = useStateContext();
 
+    const [percentage, setPercentage] = useState();
+
+    useEffect(() => {
+        if (props.marketingBudget !== 'undefined' && props.marketingExpenses !== 'undefined') {
+            setPercentage(percentageCalculator(props.marketingExpenses, props.marketingBudget));
+        }
+    }, [props.marketingBudget, props.marketingExpenses]);
 
     return (
         <div className='flex gap-10 flex-wrap justify-center max-w-screen-xl'>
@@ -38,18 +45,18 @@ const RevenueOverview = (props) => {
                     <div className='border-r-1 border-color m-4 pr-10'>
                         <div>
                             <p>
-                                <span className='text-3xl font-semibold'>{props.marketingBudgetData}</span>
+                                <span className='text-3xl font-semibold'>{(props.currencyNumberFormat(props.marketingBudget))}</span>
                                 <span className='p-1.5 hover:drop-shadow-xl 
                     cursor-pointer rounded-full bg-green-400 text-white ml-3 text-xs'
                                 >
-                                    {Math.round(props.percentage)} %
+                                    {Math.round(percentage)} %
                                 </span>
                             </p>
                             <p className='text-gray-500 dark:text-white mt-1'>Annual Marketing Budget</p>
                         </div>
                         <div className='mt-8'>
                             <p>
-                                <span className='text-3xl font-semibold'>{props.marketingExpenses}</span>
+                                <span className='text-3xl font-semibold'>{(props.currencyNumberFormat(props.marketingExpenses))}</span>
                             </p>
                             <p className='text-gray-500 dark:text-white mt-1'>Marketing Expenses</p>
                         </div>

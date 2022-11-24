@@ -18,39 +18,31 @@ const AccountSummary = () => {
   const [profit, setProfit] = useState();
   const [marketingBudget, setMarketingBudget] = useState();
   const [marketingExpenses, setMarketingExpenses] = useState();
-  const [percentage, setPercentage] = useState();
+
 
   useEffect(() => {
     fetch('/api').then(response => response.json()
     ).then(
       data => {
-        setEarnings(currencyNumberFormat(data.earnings));
-        setExpenses(currencyNumberFormat(data.expenses));
-        setProfit(currencyNumberFormat(data.earnings - data.expenses));
-        setMarketingBudget(currencyNumberFormat(data.marketingBudget));
-        setMarketingExpenses(currencyNumberFormat(data.marketingExpenses));
-        setPercentage(percentageCalculator(data.marketingExpenses, data.marketingBudget));
+        setEarnings(data.earnings);
+        setExpenses(data.expenses);
+        setProfit(data.earnings - data.expenses);
+        setMarketingBudget(data.marketingBudget);
+        setMarketingExpenses(data.marketingExpenses);
       }
     )
   }, []);
 
   return (
     <div className='mt-12 mb-28 max-w-screen-xl m-auto'>
-      <div className='flex flex-wrap lg:flex-nowrap justify-center'>
-        <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg
-        rounded-xl w-full p-8 pt-9 m-4'>
 
-          <FinancialSummary
-            earningsData={earnings}
-            expenseData={expenses}
-            profitData={profit}
-          />
+      <FinancialSummary
+        currencyNumberFormat={currencyNumberFormat}
+        earnings={earnings}
+        expenses={expenses}
+        profit={profit}
+      />
 
-          {/* <p>{props.users[0]}</p> */}
-
-
-        </div>
-      </div>
       <div className='flex m-3 flex-wrap justify-center gp-1 items-center'>
         {earningData.map((item) =>
           <div
@@ -83,10 +75,10 @@ const AccountSummary = () => {
       </div>
 
       <RevenueOverview
-        marketingBudgetData={marketingBudget}
+        currencyNumberFormat={currencyNumberFormat}
+        marketingBudget={marketingBudget}
         marketingExpenses={marketingExpenses}
         expenseData={expenses}
-        percentage={percentage}
       />
     </div>
   )
