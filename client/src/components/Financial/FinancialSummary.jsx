@@ -75,7 +75,8 @@ const FinancialSummary = (props) => {
                 </div>
 
                 <div className='text=2xl font-bold flex items-center h-full'>
-                    <CircularGauge 
+                    <CircularGauge
+                        className='text-black dark:text-white fill-black dark:fill-white'
                         value={percentage}
                         stroke={currentColor}
                     />

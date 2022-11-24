@@ -9,10 +9,10 @@ import { useStateContext } from '../../contexts/ContextProvider';
 const RevenueOverview = (props) => {
 
     const { currentColor } = useStateContext();
-
     const [percentage, setPercentage] = useState();
-
-    const types = ['Total', 'Q1', 'Q2', 'Q3', 'Q4'];
+    const [selectedTab, setSelectedTab] = useState('Total');
+    
+    const values = ['Total', 'Q1', 'Q2', 'Q3', 'Q4'];
 
     useEffect(() => {
         if (props.marketingBudget !== 'undefined' && props.marketingExpenses !== 'undefined') {
@@ -37,12 +37,16 @@ const RevenueOverview = (props) => {
                         </p>
                     </div>
                 </div>
-                <div className='flex flex-row flex-1'> 
-                    <Tabs 
-                        types={types}
+                <div className='mt-2 mb-3'>
+                    <Tabs
+                        values={values}
                         currentColor={currentColor}
-                        className='text-2xl w-full md:font-bold'
+                        className='text-2xl w-full md:font-bold text-white'
+                        changeActiveTab={selectedTab => setSelectedTab(selectedTab)}
                     />
+                </div>
+                <div>
+                    <p>Selected Tab: {selectedTab}</p>
                 </div>
                 <div className='mt-10 flex gap-10 flex-wrap justify-center'>
                     <div className='border-r-1 border-color m-4 pr-10'>
@@ -50,7 +54,7 @@ const RevenueOverview = (props) => {
                             <p>
                                 <span className='text-3xl font-semibold'>{(props.currencyNumberFormat(props.marketingBudget))}</span>
                                 <span className='p-1.5 hover:drop-shadow-xl 
-                    cursor-pointer rounded-full bg-green-400 text-white ml-3 text-xs'
+                    cursor-pointer rounded-full bg-green-400 text-black dark:text-white ml-3 text-xs '
                                 >
                                     {Math.round(percentage)} %
                                 </span>

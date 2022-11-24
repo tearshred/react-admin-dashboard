@@ -1,63 +1,35 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 
-const Tab = styled.button`
-  font-size: 20px;
-  padding: 10px 60px;
-  cursor: pointer;
-  border: 0;
-  outline: 0;
-  ${({ active }) =>
-        active &&
-        `
-    border-bottom: 2px solid black;    
-    background: ${props => (props.currentColor)};
-  `}
-  ${({ isHover }) => isHover && `
-  opacity: 0.5;
-  `}
-`;
+const Tabs = ({ values, currentColor, className, ...props }) => {
+    
+    const [activeTab, setActiveTab] = useState(values[0]);
 
-const ButtonGroup = styled.div`
-  display: flex;
-`;
-
-// const types = ['Q1', 'Q2', 'Q3', 'Q4'];
-
-const Tabs = ({ types, currentColor, className }) => {
-    const [active, setActive] = useState(types[0]);
-
-    const [Hover, setHover] = useState(false);
-
-    const handleMouseEnter = () => {
-        setHover(true);
-    };
-    const handleMouseLeave = () => {
-        setHover(false);
-    };
-
-    const boxStyle = {
-        //...
-        backgroundColor: Hover ? 'black' : currentColor,
-    };
+    useEffect(() => {
+      props.changeActiveTab(activeTab)
+    }, [activeTab])
+    
 
     return (
         <>
             <div className='flex flex-row justify-between w-full'>
-                {types.map(type => (
-                    <Tab
+                {values.map(value => (
+                    <div
                         className={className}
                         style={{ backgroundColor: currentColor }}
-                        key={type}
-                        active={active === type}
-                        onClick={() => setActive(type)}
+                        key={value}
+                        value={value}
+                        activeTab={activeTab === value}
+                        onClick={() => setActiveTab(value)}
                     >
                         <div
-                            className='w-full p-2'
+                            className='w-full p-2 cursor-pointer
+                             hover:bg-white hover:text-black
+                             text-center duration-500
+                            '
                         >
-                            {type}
+                            {value}
                         </div>
-                    </Tab>
+                    </div>
                 ))}
             </div>
         </>

@@ -18,7 +18,10 @@ const AccountSummary = () => {
   const [profit, setProfit] = useState();
   const [marketingBudget, setMarketingBudget] = useState();
   const [marketingExpenses, setMarketingExpenses] = useState();
-
+  const [q1, setQ1] = useState()
+  const [q2, setQ2] = useState()
+  const [q3, setQ3] = useState()
+  const [q4, setQ4] = useState()
 
   useEffect(() => {
     fetch('/api').then(response => response.json()
@@ -29,6 +32,10 @@ const AccountSummary = () => {
         setProfit(data.earnings - data.expenses);
         setMarketingBudget(data.marketingBudget);
         setMarketingExpenses(data.marketingExpenses);
+        setQ1(data.q1);
+        setQ2(data.q2);
+        setQ3(data.q3);
+        setQ4(data.q4);
       }
     )
   }, []);

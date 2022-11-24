@@ -2,7 +2,7 @@ import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const CircularGauge = ({ value, stroke }) => {
+const CircularGauge = ({ value, stroke, className }) => {
 
     const calcColor = (percent, start, end) => {
         let a = percent / 100,
@@ -16,6 +16,7 @@ const CircularGauge = ({ value, stroke }) => {
     return (
 
         <CircularProgressbar
+            className={className}
             value={value}
             text={`${value} %`}
             circleRatio={0.7}
