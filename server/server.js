@@ -13,7 +13,7 @@ mongoose.connect(`mongodb://localhost/${dbName}`, () => {
     let connectionStatus = mongoose.connection.readyState;
 
     // Displaying status based on the returned value
-    switch(connectionStatus) {
+    switch (connectionStatus) {
         case 0: console.log('Database Disconnected - Status Code ' + connectionStatus);
             break;
         case 1: console.log('Database Connected - Status Code ' + connectionStatus);
@@ -26,13 +26,22 @@ mongoose.connect(`mongodb://localhost/${dbName}`, () => {
 });
 
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(errorHandler);
 
 app.use('/api/ledger', require('./routes/ledgerRoutes'));
 
 app.get('/api/test', (req, res) => {
-    res.json({ message: 'test'})
+    res.json({ message: 'test' })
+});
+
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3005');
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    next();
 });
 
 app.listen(port, () => { console.log(`Server started on port ${port}`) });

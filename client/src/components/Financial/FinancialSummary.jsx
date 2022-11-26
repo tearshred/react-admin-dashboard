@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { TiChartLine } from 'react-icons/ti';
 import { Link, NavLink } from 'react-router-dom';
 import { percentageCalculator } from '../../components/index';
@@ -12,11 +13,16 @@ const FinancialSummary = (props) => {
 
     const [percentage, setPercentage] = useState();
 
-    useEffect(() => {
-        if (props.earnings !== 'undefined' && props.expenses !== 'undefined') {
-            setPercentage(Math.round(percentageCalculator(props.expenses, props.earnings)));
-        }
-    }, [props.earnings, props.expenses]);
+    // useEffect(() => {
+    //     axios.get('http://192.168.1.17:3005/api/ledger').then((response) => {
+    //         const data = response.data;
+    //         console.log(data.json());
+    //     })
+    //     // console.log(props)
+    //     // if (props.earnings !== 'undefined' && props.expenses !== 'undefined') {
+    //     //     setPercentage(Math.round(percentageCalculator(props.expenses, props.earnings)));
+    //     // }
+    // }, []);
 
     return (
         <div className='flex flex-wrap lg:flex-nowrap justify-center'>

@@ -9,11 +9,8 @@ const ledgerSchema = new mongoose.Schema({
     amount: {
         type: Number
     },
-    name: {
+    category: {
         type: String
-    },
-    age: {
-        type: Number
     }
 });
 

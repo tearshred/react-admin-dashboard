@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-
+import axios from 'axios';
 import { Stacked, Pie, Button, SparkLine, FinancialSummary, RevenueOverview } from '../components';
 
 import { earningData, SparklineAreaData, ecomPieChartData } from '../data/dummy';
@@ -8,6 +8,8 @@ import { earningData, SparklineAreaData, ecomPieChartData } from '../data/dummy'
 import { useStateContext } from '../contexts/ContextProvider';
 
 import { currencyNumberFormat, percentageCalculator } from '../components/index';
+
+
 
 const AccountSummary = () => {
 
@@ -23,22 +25,31 @@ const AccountSummary = () => {
   const [q3, setQ3] = useState()
   const [q4, setQ4] = useState()
 
+  // useEffect(() => {
+  //   fetch('/api/ledger').then(response => response.json()
+  //   ).then(
+  //     data => {
+  //       setEarnings(data.earnings);
+  //       setExpenses(data.expenses);
+  //       setProfit(data.earnings - data.expenses);
+  //       setMarketingBudget(data.marketingBudget);
+  //       setMarketingExpenses(data.marketingExpenses);
+  //       setQ1(data.q1);
+  //       setQ2(data.q2);
+  //       setQ3(data.q3);
+  //       setQ4(data.q4);
+  //     }
+  //   )
+  // }, []);
+
+  const [data, setData] = useState({})
+
   useEffect(() => {
-    fetch('/api').then(response => response.json()
-    ).then(
-      data => {
-        setEarnings(data.earnings);
-        setExpenses(data.expenses);
-        setProfit(data.earnings - data.expenses);
-        setMarketingBudget(data.marketingBudget);
-        setMarketingExpenses(data.marketingExpenses);
-        setQ1(data.q1);
-        setQ2(data.q2);
-        setQ3(data.q3);
-        setQ4(data.q4);
-      }
-    )
-  }, []);
+    fetch('/api/ledger')
+    .then(res => res.json())
+    .then(data => setData(data));
+    console.log(data)
+  }, [])
 
   return (
     <div className='mt-12 mb-28 max-w-screen-xl m-auto'>

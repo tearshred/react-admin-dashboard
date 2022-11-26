@@ -5,17 +5,18 @@ const Ledger = require('../models/Ledger');
 // @desc Gets the ledger
 // @route GET /api/ledger
 // @access PRIVATE
-const getLedger = asyncHandler(async (req, res) => {
-    const viewLedger = await Ledger.find();
-    // let ledgerAmount = viewLedger.find;
-    console.log(viewLedger)
-})
+// const getLedger = asyncHandler(async (req, res) => {
+//     const viewLedger = await Ledger.find();
+//     // let ledgerAmount = viewLedger.find;
+//     // console.log(viewLedger)
+//     res.send(viewLedger)
+// })
 
 // @desc Sets the ledger
 // @route POST /api/ledger
 // @access PRIVATE
 const setLedger = asyncHandler(async (req, res) => {
-    const ledger = await new Ledger({ amount: 19, name: 'Dav', age: 28})
+    const ledger = await new Ledger({ amount: -80000, name: 'Dav', category: 'expense'})
     await ledger.save();
     console.log(ledger);
 })
@@ -33,7 +34,7 @@ const updateLedger = asyncHandler(async (req, res) => {
 const deleteLedger = asyncHandler(async (req, res) => {
     console.log(typeof req.params.id)
     
-    await Ledger.deleteMany({name: req.params.id});
+    await Ledger.deleteMany();
     // let ledgerAmount = viewLedger.find;
 
     // console.log
@@ -42,7 +43,7 @@ const deleteLedger = asyncHandler(async (req, res) => {
 })
 
 module.exports = {
-    getLedger,
+    // getLedger,
     setLedger,
     updateLedger,
     deleteLedger

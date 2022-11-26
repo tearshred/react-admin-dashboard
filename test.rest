@@ -1,1 +1,1 @@
-delete http://localhost:3005/api/ledger/22
+get http://localhost:3005/api/ledger
