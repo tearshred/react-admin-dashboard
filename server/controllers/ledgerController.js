@@ -1,23 +1,27 @@
 const asyncHandler = require('express-async-handler');
+const mongoose = require('mongoose');
+const Ledger = require('../models/Ledger');
 
 // @desc Gets the ledger
 // @route GET /api/ledger
 // @access PRIVATE
 const getLedger = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: 'Get Ledger' })
+    const viewLedger = await Ledger.find();
+    // let ledgerAmount = viewLedger.find;
+    console.log(viewLedger)
 })
 
 // @desc Sets the ledger
 // @route POST /api/ledger
 // @access PRIVATE
 const setLedger = asyncHandler(async (req, res) => {
-    console.log(req.body);
-
-    res.status(200).json({ message: 'Set Ledger' })
+    const ledger = await new Ledger({ amount: 19, name: 'Dav', age: 28})
+    await ledger.save();
+    console.log(ledger);
 })
 
 // @desc Update the ledger entry
-// @route PUT /api/ledger/;id
+// @route PUT /api/ledger/:id
 // @access PRIVATE
 const updateLedger = asyncHandler(async (req, res) => {
     res.status(200).json({  message: `Update ledger ${req.params.id}` })
@@ -27,7 +31,14 @@ const updateLedger = asyncHandler(async (req, res) => {
 // @route delete /api/ledger/;id
 // @access PRIVATE
 const deleteLedger = asyncHandler(async (req, res) => {
-    res.status(200).json({  message: `Delete ledger ${req.params.id}` })
+    console.log(typeof req.params.id)
+    
+    await Ledger.deleteMany({name: req.params.id});
+    // let ledgerAmount = viewLedger.find;
+
+    // console.log
+
+    // console.log('Deleted Entry with the ' + res.deletedCount)
 })
 
 module.exports = {
